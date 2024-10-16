@@ -1,0 +1,39 @@
+{% extends 'mysite/base.html' %}
+{% load static %}
+
+{% block title %}
+    Calculator
+{% endblock %}
+
+{% block content %}
+    <div class="calculator">
+        <div class="screen">
+            <h1>{{ result|default:"0" }}</h1>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="button-row">
+                <button type="submit" name="operation" value="add">+</button>
+                <button type="submit" name="operation" value="subtract">-</button>
+            </div>
+            <div class="button-row">
+                <button type="submit" name="operation" value="multiply">*</button>
+                <button type="submit" name="operation" value="divide">/</button>
+            </div>
+            <input type="number" name="num1" placeholder="First number" required>
+            <input type="number" name="num2" placeholder="Second number" required>
+        </form>
+    </div>
+
+    <h2>Previous Calculations</h2>
+    <ul>
+        {% for calculation in calculations %}
+            <li>{{ calculation }}
+                <form method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" name="delete" value="{{ calculation.id }}">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

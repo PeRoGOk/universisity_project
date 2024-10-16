@@ -1,0 +1,19 @@
+{% extends 'mysite/base.html' %}
+{% load static %}
+
+
+{% block title %}
+    ficha us
+{% endblock %}
+
+{% block content %}
+    <h1>Main guest</h1>
+    <div class="cat-image">
+        <h2>Here is a cute cat!</h2>
+        <img src="{% static 'images/download.jpg' %}" alt="Cute Cat" style="width:300px;height:auto;">
+    </div>
+{% endblock %}
+
+{% block header_title %}
+    Ficha
+{% endblock %}
